@@ -2,13 +2,14 @@
   "name": "crossfilter-time-series-group",
   "version": "0.5.0",
   "description": "A special type of crossfilter group that can be used as a time series.",
-  "main": "crossfilter-time-series-group.js",
+  "main": "dist/crossfilter-time-series-group.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "build": "npm install && babel --modules umd $npm_package_main --out-file dist/$npm_package_name.js && uglifyjs --compress --preamble \"`./banner.sh`\" -- dist/$npm_package_name.js > dist/$npm_package_name.min.js",
-    "test": "mocha --compilers js:babel/register"
+    "build": "echo \"`./banner.sh`\\n`babel --modules umd $npm_package_main`\" > dist/$npm_package_name.js && uglifyjs --compress --comments '/license/i' -- dist/$npm_package_name.js > dist/$npm_package_name.min.js",
+    "test": "mocha --compilers js:babel/register",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "crossfilter"
